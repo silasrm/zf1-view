@@ -23,9 +23,6 @@
 /** Zend_View_Helper_Currency */
 require_once 'Zend/View/Helper/Currency.php';
 
-/** Zend_Registry */
-require_once 'Zend/Registry.php';
-
 /** Zend_Currency */
 require_once 'Zend/Currency.php';
 

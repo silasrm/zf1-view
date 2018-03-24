@@ -23,9 +23,6 @@
 /** Zend_View_Helper_Doctype */
 require_once 'Zend/View/Helper/Doctype.php';
 
-/** Zend_Registry */
-require_once 'Zend/Registry.php';
-
 /**
  * Test class for Zend_View_Helper_Doctype.
  *

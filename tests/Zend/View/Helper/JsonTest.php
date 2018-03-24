@@ -23,7 +23,6 @@
 require_once 'Zend/View/Helper/Json.php';
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Response/Http.php';
-require_once 'Zend/Json.php';
 require_once 'Zend/Layout.php';
 
 /**

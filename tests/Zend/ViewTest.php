@@ -31,11 +31,6 @@ require_once 'Zend/View.php';
 require_once 'Zend/View/Interface.php';
 
 /**
- * Zend_Loader
- */
-require_once 'Zend/Loader.php';
-
-/**
  * @category   Zend
  * @package    Zend_View
  * @subpackage UnitTests

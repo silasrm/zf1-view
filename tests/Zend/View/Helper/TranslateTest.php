@@ -23,9 +23,6 @@
 /** Zend_View_Helper_Translate */
 require_once 'Zend/View/Helper/Translate.php';
 
-/** Zend_Registry */
-require_once 'Zend/Registry.php';
-
 /** Zend_Translate */
 require_once 'Zend/Translate.php';
 require_once 'Zend/Translate/Adapter/Array.php';
