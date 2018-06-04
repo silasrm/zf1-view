@@ -58,7 +58,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
             unset($registry[$regKey]);
         }
         $this->basePath = dirname(__FILE__) . '/_files/modules';
-        $this->helper = new Zend_View_Helper_HeadStyle();
+        $this->helper   = new Zend_View_Helper_HeadStyle();
     }
 
     /**
@@ -160,7 +160,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
         }
         $this->helper->setStyle($string);
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertCount(1, $values);
         $item = array_shift($values);
 
         $this->assertTrue($item instanceof stdClass);
@@ -236,7 +236,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
         $this->helper->headStyle($style1, 'SET')
                      ->headStyle($style2, 'PREPEND')
                      ->headStyle($style3, 'APPEND');
-        $this->assertEquals(3, count($this->helper));
+        $this->assertCount(3, $this->helper);
         $values = $this->helper->getArrayCopy();
         $this->assertTrue((strstr($values[0]->content, $style2)) ? true : false);
         $this->assertTrue((strstr($values[1]->content, $style1)) ? true : false);
@@ -272,7 +272,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
         echo 'foobar';
         $this->helper->captureEnd();
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertCount(1, $values);
         $item = array_shift($values);
         $this->assertContains('foobar', $item->content);
     }
@@ -281,7 +281,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
     {
         $this->helper->offsetSetStyle(100, 'foobar');
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertCount(1, $values);
         $this->assertTrue(isset($values[100]));
         $item = $values[100];
         $this->assertContains('foobar', $item->content);
@@ -328,7 +328,7 @@ h1 {
     public function testSerialCapturingWorks()
     {
         $this->helper->headStyle()->captureStart();
-        echo "Captured text";
+        echo 'Captured text';
         $this->helper->headStyle()->captureEnd();
 
         try {
@@ -342,15 +342,15 @@ h1 {
     public function testNestedCapturingFails()
     {
         $this->helper->headStyle()->captureStart();
-        echo "Captured text";
-            try {
-                $this->helper->headStyle()->captureStart();
-                $this->helper->headStyle()->captureEnd();
-                $this->fail('Nested capturing should fail');
-            } catch (Zend_View_Exception $e) {
-                $this->helper->headStyle()->captureEnd();
-                $this->assertContains('Cannot nest', $e->getMessage());
-            }
+        echo 'Captured text';
+        try {
+            $this->helper->headStyle()->captureStart();
+            $this->helper->headStyle()->captureEnd();
+            $this->fail('Nested capturing should fail');
+        } catch (Zend_View_Exception $e) {
+            $this->helper->headStyle()->captureEnd();
+            $this->assertContains('Cannot nest', $e->getMessage());
+        }
     }
 
     public function testMediaAttributeAsArray()
@@ -367,7 +367,6 @@ a {
         $this->assertContains('    <!--', $string);
         $this->assertContains('    a {', $string);
         $this->assertContains(' media="screen,projection"', $string);
-
     }
 
     public function testMediaAttributeAsCommaSeperatedString()
@@ -384,7 +383,6 @@ a {
         $this->assertContains('    <!--', $string);
         $this->assertContains('    a {', $string);
         $this->assertContains(' media="screen,projection"', $string);
-
     }
 
     public function testConditionalScript()
@@ -402,14 +400,13 @@ a {
      */
     public function testContainerMaintainsCorrectOrderOfItems()
     {
-
         $style1 = 'a {display: none;}';
         $this->helper->offsetSetStyle(10, $style1);
 
         $style2 = 'h1 {font-weight: bold}';
         $this->helper->offsetSetStyle(5, $style2);
 
-        $test = $this->helper->toString();
+        $test     = $this->helper->toString();
         $expected = '<style type="text/css" media="screen">' . PHP_EOL
                   . '<!--' . PHP_EOL
                   . $style2 . PHP_EOL
@@ -431,7 +428,7 @@ a {
     {
         $style = 'a{display:none;}';
         $this->helper->appendStyle($style, array(
-        	'conditional' => 'IE 8'
+            'conditional' => 'IE 8'
         ));
         $value = $this->helper->toString();
 
